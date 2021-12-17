@@ -26,7 +26,7 @@
         <!--Login-->
         <scene sceneID="dhv-hM-454">
             <objects>
-                <viewController title="Login" id="nEQ-XK-nVf" sceneMemberID="viewController">
+                <viewController title="Login" id="nEQ-XK-nVf" customClass="LoginView" customModule="MarketEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CCt-jy-lW6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,6 +58,9 @@
                                 <rect key="frame" x="184" y="441" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="isPressed:" destination="nEQ-XK-nVf" eventType="touchUpInside" id="l2D-gt-Gfa"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbg-Sl-MlG">
                                 <rect key="frame" x="191" y="269" width="33" height="21"/>
@@ -80,11 +83,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXF-MN-a9T">
+                                <rect key="frame" x="150" y="527" width="115" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Forget Password"/>
+                                <connections>
+                                    <action selector="forgetPassword:" destination="nEQ-XK-nVf" eventType="touchUpInside" id="tqD-0D-2tQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="er9-vY-fp7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="adU-Ev-Rfi"/>
+                    <connections>
+                        <outlet property="emailText" destination="loi-LA-AHH" id="tNa-1j-D2W"/>
+                        <outlet property="passwordText" destination="1Yg-Ax-ypR" id="Ne5-aa-GLf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ylU-CS-G28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -174,7 +189,7 @@
         <!--Map-->
         <scene sceneID="Qpa-hB-YKf">
             <objects>
-                <viewController title="Map" id="Typ-qN-Egf" sceneMemberID="viewController">
+                <viewController title="Map" id="Typ-qN-Egf" customClass="MapView" customModule="MarketEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CA6-IS-cc1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,8 +198,19 @@
                                 <rect key="frame" x="20" y="44" width="374" height="313"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5wx-j1-JW1">
+                                <rect key="frame" x="87" y="387" width="241" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Farmer's Market"/>
+                                    <segment title="Food Banks"/>
+                                </segments>
+                                <connections>
+                                    <action selector="isSegmentChanged:" destination="Typ-qN-Egf" eventType="valueChanged" id="MQH-Pv-EBC"/>
+                                </connections>
+                            </segmentedControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Eu-Zu-4Xh">
-                                <rect key="frame" x="20" y="454" width="374" height="318"/>
+                                <rect key="frame" x="20" y="453" width="374" height="318"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0c7-zk-8rv">
@@ -206,14 +232,6 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="ZOP-EC-MNU"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="RFx-Kq-bAG"/>
                             </scrollView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5wx-j1-JW1">
-                                <rect key="frame" x="87" y="387" width="241" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Farmer's Market"/>
-                                    <segment title="Food Banks"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cRn-Mu-xiR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -352,7 +370,7 @@
         <!--Register-->
         <scene sceneID="Wid-mH-YmS">
             <objects>
-                <viewController title="Register" id="jHM-VK-Aqz" sceneMemberID="viewController">
+                <viewController title="Register" id="jHM-VK-Aqz" customClass="RegisterView" customModule="MarketEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xeS-h2-qVp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -389,6 +407,9 @@
                                 <rect key="frame" x="184" y="340" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="isPressed:" destination="jHM-VK-Aqz" eventType="touchUpInside" id="Ogb-Bp-sUx"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZ7-6j-zCC">
                                 <rect key="frame" x="204" y="131" width="33" height="21"/>
@@ -423,6 +444,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="lwI-rF-jbW"/>
+                    <connections>
+                        <outlet property="emailString" destination="G88-Nn-ggp" id="L2U-Eg-mnW"/>
+                        <outlet property="passwordText" destination="2q1-rX-0vn" id="Yad-x8-uFE"/>
+                        <outlet property="passwordTextConfirm" destination="H74-NS-4gC" id="jEX-iI-Wc3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPw-tp-pSi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
