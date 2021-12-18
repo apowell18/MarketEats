@@ -21,6 +21,7 @@
 		5EBE248D276D0B93004E6089 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5EBE248C276D0B93004E6089 /* FirebaseStorage */; };
 		5EBE248F276D0B93004E6089 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5EBE248E276D0B93004E6089 /* FirebaseAuth */; };
 		5EBE2491276D0B93004E6089 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5EBE2490276D0B93004E6089 /* FirebaseDatabase */; };
+		5EBE2494276E38AF004E6089 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE2493276E38AF004E6089 /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		5EBE247E276CD885004E6089 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		5EBE2483276CDA04004E6089 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5EBE2486276D03DE004E6089 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5EBE2493276E38AF004E6089 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				5EBE247D276CD86C004E6089 /* ViewControllers */,
 				5EBE2464276C4573004E6089 /* SceneDelegate.swift */,
 				5EBE2486276D03DE004E6089 /* GoogleService-Info.plist */,
+				5EBE2493276E38AF004E6089 /* Database.swift */,
 				5EBE2466276C4573004E6089 /* ViewController.swift */,
 				5EBE2468276C4573004E6089 /* Main.storyboard */,
 				5EBE246B276C4575004E6089 /* Assets.xcassets */,
@@ -180,6 +183,7 @@
 				5EBE2478276CCA29004E6089 /* MapView.swift in Sources */,
 				5EBE2463276C4573004E6089 /* AppDelegate.swift in Sources */,
 				5EBE247F276CD885004E6089 /* RegisterView.swift in Sources */,
+				5EBE2494276E38AF004E6089 /* Database.swift in Sources */,
 				5EBE2465276C4573004E6089 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +333,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MarketEats/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -347,6 +352,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MarketEats/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
