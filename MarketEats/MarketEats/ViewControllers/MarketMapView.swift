@@ -8,32 +8,31 @@
 import UIKit
 import MapKit
 
-class MapView: UIViewController {
-    
-    
-    
-    
+class MarketMapView: UIViewController, CLLocationManagerDelegate {
+
     private let locationManager = CLLocationManager()
-   // private var currentCoordinate: CLLocationCoordinate2D?
+    //private var currentCoordinate: CLLocationCoordinate2D?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureLocationServices()
-        // Do any additional setup after loading the view.
+        //configureLocationServices()
+       
     }
-    
+    /*
     private func configureLocationServices(){
         locationManager.delegate = self
         let status = CLLocationManager.authorizationStatus()
         
         if status == .notDetermined{
             locationManager.requestAlwaysAuthorization()
-            
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.distanceFilter = kCLDistanceFilterNone
+            locationManager.startUpdatingLocation()
         }else{
             
         }
     }
-    
+    */
     // Code for Segmented Control
     
     @IBAction func isSegmentChanged(_ sender: UISegmentedControl) {
@@ -64,14 +63,4 @@ class MapView: UIViewController {
     
 }
 
-extension MapView: CLLocationManagerDelegate{
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations location: [CLLocation]){
-        
-    }
-    
-    //get user permission
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: [CLAuthorizationStatus]){
-        
-    }
-}
+
