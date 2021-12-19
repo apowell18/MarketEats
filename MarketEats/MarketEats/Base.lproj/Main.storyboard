@@ -271,6 +271,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="3PV-gP-4hr"/>
+                    <connections>
+                        <outlet property="marketsMap" destination="p3o-zg-jW4" id="BTH-jK-8Pn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCA-Kw-bBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
