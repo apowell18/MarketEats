@@ -22,6 +22,7 @@
 		5EBE2491276D0B93004E6089 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5EBE2490276D0B93004E6089 /* FirebaseDatabase */; };
 		5EBE2494276E38AF004E6089 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE2493276E38AF004E6089 /* Database.swift */; };
 		5EBE249D276FD7EE004E6089 /* MarketMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE249C276FD7ED004E6089 /* MarketMapView.swift */; };
+		5EBE24A027700F01004E6089 /* locationsCoords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE249F27700F01004E6089 /* locationsCoords.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		5EBE2486276D03DE004E6089 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5EBE2493276E38AF004E6089 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		5EBE249C276FD7ED004E6089 /* MarketMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketMapView.swift; sourceTree = "<group>"; };
+		5EBE249F27700F01004E6089 /* locationsCoords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationsCoords.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				5EBE2464276C4573004E6089 /* SceneDelegate.swift */,
 				5EBE2486276D03DE004E6089 /* GoogleService-Info.plist */,
 				5EBE2493276E38AF004E6089 /* Database.swift */,
+				5EBE249F27700F01004E6089 /* locationsCoords.swift */,
 				5EBE2466276C4573004E6089 /* ViewController.swift */,
 				5EBE2468276C4573004E6089 /* Main.storyboard */,
 				5EBE246B276C4575004E6089 /* Assets.xcassets */,
@@ -184,6 +187,7 @@
 				5EBE2463276C4573004E6089 /* AppDelegate.swift in Sources */,
 				5EBE247F276CD885004E6089 /* RegisterView.swift in Sources */,
 				5EBE2494276E38AF004E6089 /* Database.swift in Sources */,
+				5EBE24A027700F01004E6089 /* locationsCoords.swift in Sources */,
 				5EBE2465276C4573004E6089 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

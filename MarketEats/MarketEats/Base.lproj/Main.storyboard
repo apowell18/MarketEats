@@ -273,6 +273,7 @@
                     <tabBarItem key="tabBarItem" title="Item 1" id="3PV-gP-4hr"/>
                     <connections>
                         <outlet property="marketsMap" destination="p3o-zg-jW4" id="BTH-jK-8Pn"/>
+                        <outlet property="segmentButtons" destination="5wx-j1-JW1" id="0fl-zU-a59"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCA-Kw-bBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
