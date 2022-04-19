@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct Location {
+struct Location: Codable {
     var name: String
     var long: Int
     var lang: Int
-    var desc: String
 }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseDatabase
+//import FirebaseDatabase
 
 final class DatabaseHelper{
     static let shared = DatabaseHelper()

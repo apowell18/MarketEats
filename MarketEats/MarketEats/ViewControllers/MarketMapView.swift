@@ -7,9 +7,12 @@
 
 import UIKit
 import MapKit
+import SwiftUI
 
-class MarketMapView: UIViewController{
-
+class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    let marketData = marketDataLoader().marketInfo
+    
     @IBOutlet weak var segmentButtons: UISegmentedControl!
     @IBOutlet weak var marketsMap: MKMapView!
     private let locationManager = CLLocationManager()
@@ -17,7 +20,28 @@ class MarketMapView: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+ 
+        marketTableView.delegate = self
+        marketTableView.dataSource = self
         configureLocationServices()
+         
+    }
+    
+    @IBOutlet weak var marketTableView: UITableView!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->Int{
+        return marketData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+    
+        
+        cell.textLabel!.text = marketData[indexPath.row].MarketName
+        
+        cell.textLabel?.numberOfLines=0
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        return cell
     }
     
     private func configureLocationServices(){
@@ -53,13 +77,16 @@ class MarketMapView: UIViewController{
         
         //showcase user location
         marketsMap.showsUserLocation = true
+        
     }
     
     // Code for Segmented Control, add annotations
-var marketIsVisible = false // indicate if market is visible
-var banksIsVisible = false // indicat if foodbanks are visible
+    var marketIsVisible = true // indicate if market is visible
+    var banksIsVisible = false // indicat if foodbanks are visible
     
     @IBAction func isSegmentChanged(_ sender: UISegmentedControl) {
+        sender.selectedSegmentIndex = 0
+        
         if sender.selectedSegmentIndex == 1 {
             marketIsVisible = false
             banksIsVisible = true
@@ -156,7 +183,8 @@ extension MarketMapView: CLLocationManagerDelegate{
         guard let latestLocation = locations.first else {return}
         if currentCoordinate == nil{
             updateLocation(with: latestLocation.coordinate)
-            isSegmentChanged(segmentButtons)
+            //isSegmentChanged(segmentButtons)
+            showFarmersMarket()
         }
         currentCoordinate = latestLocation.coordinate
     }
