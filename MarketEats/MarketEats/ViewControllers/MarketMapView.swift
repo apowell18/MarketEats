@@ -12,7 +12,6 @@ import SwiftUI
 class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     let marketData = marketDataLoader().marketInfo
-    let locationData = LocationLoader().locationData
     
     @IBOutlet weak var segmentButtons: UISegmentedControl!
     @IBOutlet weak var marketsMap: MKMapView!
@@ -20,10 +19,14 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     private var currentCoordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
+        //let allAnnotations = self.marketsMap.annotations
+        //self.marketsMap.removeAnnotations(allAnnotations)
+        
         super.viewDidLoad()
         marketTableView.delegate = self
         marketTableView.dataSource = self
         configureLocationServices()
+        //showMarkets()
     }
     
     @IBOutlet weak var marketTableView: UITableView!
@@ -32,12 +35,14 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return marketData.count
     }
     
+    var locs:[MKPointAnnotation] = []
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         // populate map as you scroll or search through list of cells
-        var locs:[MKPointAnnotation] = []
+        
         for i in marketData{
             let loc = MKPointAnnotation()
             loc.title = marketData[indexPath.row].MarketName
@@ -45,7 +50,7 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
             locs.append(loc)
             marketsMap.addAnnotation(loc)
         }
-        marketsMap.showAnnotations(locs, animated: true)
+        //marketsMap.showAnnotations(locs, animated: true)
         
         cell.textLabel!.text = marketData[indexPath.row].MarketName
         cell.textLabel?.numberOfLines=0
@@ -54,11 +59,11 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     //if selected go to the given
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
-    }
+    //func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //
+    //}
      
-     
+     /*
      let test = MKPointAnnotation()
      
      test.title = marketData[indexPath.row].MarketName
@@ -68,7 +73,14 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
      test.subtitle = "Wed: 2:00 PM-6:00 PM"
  
      marketsMap.addAnnotation(test)
-     */
+     
+    
+    func showMarkets(){
+        for i in locs{
+           marketsMap.addAnnotation(i)
+        }
+    }
+      */
     
     private func configureLocationServices(){
         locationManager.delegate = self
@@ -122,7 +134,7 @@ extension MarketMapView: CLLocationManagerDelegate{
         guard let latestLocation = locations.first else {return}
         if currentCoordinate == nil{
             updateLocation(with: latestLocation.coordinate)
-            //isSegmentChanged(segmentButtons)
+            //showMarkets()
         }
         currentCoordinate = latestLocation.coordinate
     }
