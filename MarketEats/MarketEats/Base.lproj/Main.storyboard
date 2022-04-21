@@ -241,19 +241,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5wx-j1-JW1">
-                                <rect key="frame" x="57" y="57" width="300" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="klG-Fi-XJa"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Farmer's Market"/>
-                                    <segment title="Food Banks"/>
-                                </segments>
-                                <connections>
-                                    <action selector="isSegmentChanged:" destination="Typ-qN-Egf" eventType="valueChanged" id="MQH-Pv-EBC"/>
-                                </connections>
-                            </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="p3o-zg-jW4">
                                 <rect key="frame" x="20" y="120" width="374" height="331"/>
                             </mapView>
@@ -277,23 +264,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="UKq-wf-IsR" firstAttribute="leading" secondItem="cRn-Mu-xiR" secondAttribute="leading" constant="20" id="0Di-az-zR2"/>
-                            <constraint firstItem="cRn-Mu-xiR" firstAttribute="trailing" secondItem="5wx-j1-JW1" secondAttribute="trailing" constant="57" id="43a-LY-NtL"/>
                             <constraint firstItem="cRn-Mu-xiR" firstAttribute="bottom" secondItem="p3o-zg-jW4" secondAttribute="bottom" constant="236" id="9fl-FQ-s0y"/>
                             <constraint firstItem="UKq-wf-IsR" firstAttribute="top" secondItem="cRn-Mu-xiR" secondAttribute="top" constant="459" id="Es9-pC-3eF"/>
                             <constraint firstItem="cRn-Mu-xiR" firstAttribute="bottom" secondItem="UKq-wf-IsR" secondAttribute="bottom" constant="26" id="HjK-B5-cjA"/>
-                            <constraint firstItem="5wx-j1-JW1" firstAttribute="top" secondItem="cRn-Mu-xiR" secondAttribute="top" constant="57" id="Yzt-le-Wio"/>
                             <constraint firstItem="p3o-zg-jW4" firstAttribute="leading" secondItem="cRn-Mu-xiR" secondAttribute="leading" constant="20" id="bML-eD-yGI"/>
                             <constraint firstItem="p3o-zg-jW4" firstAttribute="top" secondItem="CA6-IS-cc1" secondAttribute="topMargin" constant="120" id="d6V-G2-BWv"/>
                             <constraint firstItem="cRn-Mu-xiR" firstAttribute="trailing" secondItem="UKq-wf-IsR" secondAttribute="trailing" constant="20" id="drM-cg-lKr"/>
                             <constraint firstItem="cRn-Mu-xiR" firstAttribute="trailing" secondItem="p3o-zg-jW4" secondAttribute="trailing" constant="20" id="kaI-Ry-k6I"/>
-                            <constraint firstItem="5wx-j1-JW1" firstAttribute="leading" secondItem="cRn-Mu-xiR" secondAttribute="leading" constant="57" id="ks1-vi-GdZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="3PV-gP-4hr"/>
                     <connections>
                         <outlet property="marketTableView" destination="UKq-wf-IsR" id="qrH-ba-TSu"/>
                         <outlet property="marketsMap" destination="p3o-zg-jW4" id="BTH-jK-8Pn"/>
-                        <outlet property="segmentButtons" destination="5wx-j1-JW1" id="0fl-zU-a59"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCA-Kw-bBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

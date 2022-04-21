@@ -17,14 +17,13 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var marketsMap: MKMapView!
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
- 
         marketTableView.delegate = self
         marketTableView.dataSource = self
         configureLocationServices()
-         
+        showFarmersMarket()
     }
     
     @IBOutlet weak var marketTableView: UITableView!
@@ -34,15 +33,20 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel!.text = marketData[indexPath.row].MarketName
         
         cell.textLabel?.numberOfLines=0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         return cell
     }
+    
+    //if selected go to the given
+    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
+     */
     
     private func configureLocationServices(){
         locationManager.delegate = self
@@ -80,43 +84,16 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     
-    // Code for Segmented Control, add annotations
-    var marketIsVisible = true // indicate if market is visible
-    var banksIsVisible = false // indicat if foodbanks are visible
-    
-    @IBAction func isSegmentChanged(_ sender: UISegmentedControl) {
-        sender.selectedSegmentIndex = 0
-        
-        if sender.selectedSegmentIndex == 1 {
-            marketIsVisible = false
-            banksIsVisible = true
-            
-            showFarmersMarket() //remove markets first
-            showFoodBanks()
-            //print("Nothing Happens")
-        }
-        else{
-            marketIsVisible = true
-            banksIsVisible = false
-            
-            showFoodBanks() // remove banks first
-            showFarmersMarket()
-        }
-        
-    }
+    /*
+     https://stackoverflow.com/questions/36666968/how-to-set-up-array-for-multi-annotations-with-swift
+     */
 
     func showFarmersMarket(){
         //showcase markets information
-        /*
-         Insert code for map
-         Insert code for listView
-         */
-        
-        if marketIsVisible == true{
             //showcase farmer's market information
             let farmMarketAnnotation = MKPointAnnotation()
             
-            farmMarketAnnotation.title = "Wakefield"
+            farmMarketAnnotation.title = "TEST"
             //(x,y) - (longitude, latitude)
             farmMarketAnnotation.coordinate = CLLocationCoordinate2D(latitude: 38.832801, longitude: -77.196229)
             //Season 1 Time
@@ -130,47 +107,11 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
             //Season 1 Time
             test.subtitle = "Wed: 2:00 PM-6:00 PM"
             
+            
             //marketsMap.addAnnotation(farmMarketAnnotation)
-            marketsMap.showAnnotations([farmMarketAnnotation, test], animated: true)
-        }
-        else{
-            marketsMap.removeAnnotations(marketsMap.annotations)
-        }
+            marketsMap.showAnnotations([test], animated: true)
     }
     
-    func showFoodBanks(){
-        //showcase food banks information
-        /*
-         Insert code for map
-         Insert code for listView
-         */
-        
-        if banksIsVisible == true{
-            //showcase farmer's market information
-            let foodBanksAnnotation = MKPointAnnotation()
-            
-            foodBanksAnnotation.title = "Grace Place"
-            //(x,y) - (longitude, latitude)
-            foodBanksAnnotation.coordinate = CLLocationCoordinate2D(latitude:31.1720 , longitude: -81.5018)
-            //Season 1 Time
-            foodBanksAnnotation.subtitle = "Sun: 8:00 AM-4:00 PM"
-            
-            let test = MKPointAnnotation()
-            
-            test.title = "Test Annotation"
-            //(x,y) - (longitude, latitude)
-            test.coordinate = CLLocationCoordinate2D(latitude: 38.832800, longitude: -77.196200)
-            //Season 1 Time
-            test.subtitle = "Wed: 2:00 PM-6:00 PM"
-            
-            //marketsMap.addAnnotation(farmMarketAnnotation)
-            marketsMap.showAnnotations([foodBanksAnnotation, test], animated: true)
-        }
-        else{
-            marketsMap.removeAnnotations(marketsMap.annotations)
-        }
-        
-    }
 }
 
 extension MarketMapView: CLLocationManagerDelegate{
