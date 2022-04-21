@@ -12,6 +12,7 @@ import SwiftUI
 class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     let marketData = marketDataLoader().marketInfo
+    let locationData = LocationLoader().locationData
     
     @IBOutlet weak var segmentButtons: UISegmentedControl!
     @IBOutlet weak var marketsMap: MKMapView!
@@ -23,7 +24,6 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         marketTableView.delegate = self
         marketTableView.dataSource = self
         configureLocationServices()
-        showFarmersMarket()
     }
     
     @IBOutlet weak var marketTableView: UITableView!
@@ -35,8 +35,19 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel!.text = marketData[indexPath.row].MarketName
         
+        // populate map as you scroll or search through list of cells
+        var locs:[MKPointAnnotation] = []
+        for i in marketData{
+            let loc = MKPointAnnotation()
+            loc.title = marketData[indexPath.row].MarketName
+            loc.coordinate = CLLocationCoordinate2D(latitude: marketData[indexPath.row].Langitude, longitude:marketData[indexPath.row].Longitude)
+            locs.append(loc)
+            marketsMap.addAnnotation(loc)
+        }
+        marketsMap.showAnnotations(locs, animated: true)
+        
+        cell.textLabel!.text = marketData[indexPath.row].MarketName
         cell.textLabel?.numberOfLines=0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         return cell
@@ -46,6 +57,17 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         <#code#>
     }
+     
+     
+     let test = MKPointAnnotation()
+     
+     test.title = marketData[indexPath.row].MarketName
+     //(x,y) - (longitude, latitude)
+     test.coordinate = CLLocationCoordinate2D(latitude: 40.832800, longitude: -70.196200)
+     //Season 1 Time
+     test.subtitle = "Wed: 2:00 PM-6:00 PM"
+ 
+     marketsMap.addAnnotation(test)
      */
     
     private func configureLocationServices(){
@@ -84,33 +106,9 @@ class MarketMapView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     
-    /*
-     https://stackoverflow.com/questions/36666968/how-to-set-up-array-for-multi-annotations-with-swift
-     */
 
-    func showFarmersMarket(){
-        //showcase markets information
-            //showcase farmer's market information
-            let farmMarketAnnotation = MKPointAnnotation()
-            
-            farmMarketAnnotation.title = "TEST"
-            //(x,y) - (longitude, latitude)
-            farmMarketAnnotation.coordinate = CLLocationCoordinate2D(latitude: 38.832801, longitude: -77.196229)
-            //Season 1 Time
-            farmMarketAnnotation.subtitle = "Wed: 2:00 PM-6:00 PM"
-            
-            let test = MKPointAnnotation()
-            
-            test.title = "Test Annotation"
-            //(x,y) - (longitude, latitude)
-            test.coordinate = CLLocationCoordinate2D(latitude: 38.832800, longitude: -80.196200)
-            //Season 1 Time
-            test.subtitle = "Wed: 2:00 PM-6:00 PM"
-            
-            
-            //marketsMap.addAnnotation(farmMarketAnnotation)
-            marketsMap.showAnnotations([test], animated: true)
-    }
+   
+//EOF
     
 }
 
@@ -125,7 +123,6 @@ extension MarketMapView: CLLocationManagerDelegate{
         if currentCoordinate == nil{
             updateLocation(with: latestLocation.coordinate)
             //isSegmentChanged(segmentButtons)
-            showFarmersMarket()
         }
         currentCoordinate = latestLocation.coordinate
     }
