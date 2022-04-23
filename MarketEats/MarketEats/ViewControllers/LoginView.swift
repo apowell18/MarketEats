@@ -55,6 +55,8 @@ class LoginView: UIViewController {
 
     }
     
+    
+    
     @IBAction func forgetPassword(_ sender: UIButton) {
         //provide code for forget password
     }

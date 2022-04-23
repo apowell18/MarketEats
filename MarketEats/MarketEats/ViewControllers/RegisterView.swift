@@ -7,12 +7,6 @@
 
 import UIKit
 
-
-
-
-
-
-
 class RegisterView: UIViewController {
 
     @IBOutlet weak var emailString: UITextField!

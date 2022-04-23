@@ -1,0 +1,6 @@
+framework module Pods_MarketEats {
+  umbrella header "Pods-MarketEats-umbrella.h"
+
+  export *
+  module * { export * }
+}
