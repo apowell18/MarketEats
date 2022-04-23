@@ -52,9 +52,19 @@ class LoginView: UIViewController {
               self.present(alert ,animated: true, completion: nil)
          }
         */
-
+        login()
     }
     
+    func login(){
+        self.dismiss(animated: true, completion: nil) //dismiss page after registering
+       
+       
+        let storyboard = UIStoryboard(name:"Main", bundle:nil )
+        let vc = self.storyboard?.instantiateViewController(identifier: "MarketMapViewController") as! MarketMapView
+        vc.modalPresentationStyle = .overFullScreen
+
+        self.present(vc, animated: true)
+    }
     
     
     @IBAction func forgetPassword(_ sender: UIButton) {
@@ -65,7 +75,10 @@ class LoginView: UIViewController {
     
     @IBAction func pressedRegister(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(identifier: "RegisterViewController") as! RegisterView
-        self.present(vc, animated: true, completion: nil)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
+        
+        //self.present(vc, animated: true, completion: nil)
         
     }
 }

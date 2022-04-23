@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class RegisterView: UIViewController {
 
@@ -18,9 +20,6 @@ class RegisterView: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-    
-    
 
     //submit button - Validations work
     //create user
@@ -32,68 +31,52 @@ class RegisterView: UIViewController {
             let alert = UIAlertController.init(title: "Registration Error" , message: "Please fill the entire form", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title:"OK", style:.default))
             present(alert ,animated: true, completion: nil)
+            return
+        }
+        
+        //Firebase passwords needs to be atleast 6 char. min.
+        if((passwordText.text!.count < 6)){
+            let alert = UIAlertController.init(title: "Registration Error" , message: "Password needs atleast 6 characters.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title:"OK", style:.default))
+            present(alert ,animated: true, completion: nil)
+            return
         }
         
         //validate if both passwords are equal
-        else if( ((passwordText.text?.elementsEqual(passwordTextConfirm.text!))!) != true){
+        if( ((passwordText.text?.elementsEqual(passwordTextConfirm.text!))!) != true){
             let alert = UIAlertController.init(title: "Password Confirmation Error" , message: "Passwords must match", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title:"OK", style:.default))
             present(alert ,animated: true, completion: nil)
+            return
         }
-        
-    
         
         //if successful, reroute to login
         //add user information in db
         
         // registerNewUser()
-        
-        //success message
-        self.dismiss(animated: true, completion: nil) //dismiss page after registering
-        let alert = UIAlertController.init(title: "Success!" , message: "Registration Completed", preferredStyle: .alert)
-        let vc = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginView
-        self.present(vc, animated: true, completion: nil)
+        signUp()
        
+        //NOTE: use
     }
     
-}
-/*
-func registerNewUser(){
-    let email = emailString.text!
-    let password = passwordText.text!
-    
-    DatabaseHelper.shared.ifEmailExists(with: email, completion:{[weak self] exists in
-      
-        guard let strongSelf = self else{
-            return
-        }
-        guard !exists else{
-            strongSelf.errorMessage(message: "This email already exists")
-            return
-        }
-        
-        /*
-        if (!exists){
-            let alert = UIAlertController.init(title: "Email Error" , message: "Email already exists", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title:"OK", style:.default))
-            self.present(alert ,animated: true, completion: nil)
-        }
-        */
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: {authResults, error in
-            guard authResults != nil, error == nil
-            else{
+    func signUp(){
+        Auth.auth().createUser(withEmail: emailString.text!, password: passwordText.text!) {(authResult, error) in
+            guard let user = authResult?.user, error == nil else{
+                print("Error \(error?.localizedDescription)")
                 return
             }
-            DatabaseHelper.shared.postNewUser(with: User(email: email), completion: {success in
-                let user = User(email: email)
-            })
-        })
-    })
-}
+            
+            //success message
+            self.dismiss(animated: true, completion: nil) //dismiss page after registering
+            let alert = UIAlertController.init(title: "Success!" , message: "Registration Completed", preferredStyle: .alert)
+           
+            let storyboard = UIStoryboard(name:"Main", bundle:nil )
+            let vc = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginView
+            vc.modalPresentationStyle = .overFullScreen
+    
+            self.present(vc, animated: true)
+        }
+        
+    }
 
-func errorMessage(message:String){
-    let alert = UIAlertController.init(title: "Error" , message:message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title:"OK", style:.default))
-    present(alert ,animated: true, completion: nil)
 }
-*/
